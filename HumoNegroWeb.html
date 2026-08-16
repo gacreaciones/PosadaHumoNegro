@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cabañas-Posada Humo Negro | Mérida, Venezuela</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #2c5e3b;
+            --secondary-color: #d97736;
+            --bg-light: #f9f6f0;
+            --text-dark: #333333;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header & Nav */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .btn-reserve {
+            background-color: var(--secondary-color);
+            color: var(--white) !important;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: background 0.3s;
+        }
+
+        .btn-reserve:hover {
+            background-color: #b8602b;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), 
+                        url('https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlzhDYXrwy0U3r8saSt5MMQaCfiQOUY47ucpsGkxpOjSdbd4pJR5SptTALtED-ZtIwxOpzf0GBaBdWS-L9GgXIdLimU2Q3PXldz8FIQnZ1pKAeVnob8YcMlD-5RVxrh-9X6hUiOapXEIzrO=s680-w680-h510-rw') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #ffffff;
+            padding: 0 20px;
+            margin-top: 0;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .btn-main {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .btn-main:hover {
+            background-color: #b8602b;
+            transform: translateY(-2px);
+        }
+
+        /* Secciones Generales */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        /* Galería / Paraíso / Lugares */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+        }
+
+        .gallery-card h3 {
+            padding: 15px 15px 5px;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+        }
+
+        /* Estilos específicos para vistas previas de mapas en Lugares de Interés */
+        .map-preview-container {
+            position: relative;
+            display: block;
+            overflow: hidden;
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.35);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            gap: 8px;
+            opacity: 0.9;
+            transition: background 0.3s, opacity 0.3s;
+        }
+
+        .map-preview-container:hover .map-overlay {
+            background: rgba(0, 0, 0, 0.15);
+            opacity: 1;
+        }
+
+        .map-overlay span {
+            font-size: 0.95rem;
+            background-color: var(--secondary-color);
+            padding: 6px 15px;
+            border-radius: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        /* Opiniones */
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .review-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .review-author h4 {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+        }
+
+        .review-author span {
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        .stars {
+            color: #f39c12;
+            margin-bottom: 15px;
+        }
+
+        .review-text {
+            font-style: italic;
+            color: #555;
+        }
+
+        /* Ubicación y Contacto */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .contact-info {
+            padding: 40px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            font-size: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .contact-info i {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            margin-top: 3px;
+        }
+
+        .contact-map {
+            min-height: 350px;
+            background-color: #ddd;
+            overflow: hidden;
+        }
+
+        .contact-map iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 350px;
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin-bottom: 15px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .social-icons a {
+            color: var(--white);
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Responsive Design */
+        @media(max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fa-solid fa-mountain-sun"></i> Posada Humo Negro
+            </div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#galeria">Cabañas</a></li>
+                <li><a href="#lugares">Lugares</a></li>
+                <li><a href="#ubicacion">Ubicación</a></li>
+                <li><a href="#opiniones">Opiniones</a></li>
+                <li><a href="https://wa.me/584149781266" target="_blank" class="btn-reserve">Reservar</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Escápate a la serenidad de Mérida</h1>
+            <h2>Posada Humo Negro</h2>
+            <p>Cabañas acogedoras rodeadas de pura naturaleza y clima de montaña</p>
+            <a href="https://wa.me/584149781266" target="_blank" class="btn-main"><i class="fa-brands fa-whatsapp"></i> Contáctanos</a>
+        </div>
+    </section>
+
+    <!-- Galería / Descubre Nuestro Paraíso -->
+    <section id="galeria">
+        <h2 class="section-title">Descubre Nuestro Paraíso</h2>
+        <div class="gallery-grid">
+            <div class="gallery-card">
+                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkYZoGpYimUUw6XjZDzoM06Okonrft0I_EbhUqIjRrloJwxkiEiYIrgPmf6u9vO0G22M9fEnux3gJjCjA8Q_KGjSeEM4cAIAGu22FKYXe6UJMjMCr1lfV_YM0eQWUOrtY0RE7QuYKeKJb1W=s680-w680-h510-rw" alt="Vistas Inolvidables">
+                <h3>Vistas Inolvidables</h3>
+            </div>
+            <div class="gallery-card">
+                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnL2HQ754FzWgxfNg4n_mour8bDPJwuqnhPMb8QaE3ViU_EBkF-7fu0qZW4yA5GRwha2k-gfqeiCGeOll6MzEwMiy98ZCyu5gkgFr8JyryvlrwbLNNNDoSf4o6n-jLy8ZfUUyU-hY1gfUTd=s680-w680-h510-rw" alt="Confort y Tradición">
+                <h3>Confort y Tradición</h3>
+            </div>
+            <div class="gallery-card">
+                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWm1y5ZcrO_2kKnQ10nlRuIQoQs3EE7L8ITDKDYMatjeQiFkOJU2ZRlyltRrXlIfNWuzookuc8Kfjk3xMM-FSN80RyxJ0BFbg-7MUtGNudU7Hq2-RzLE9Ajoma6Jt2qfdKGRrRaHcHXmT_A=s680-w680-h510-rw" alt="Diversión Familiar">
+                <h3>Diversión Familiar</h3>
+            </div>
+            <div class="gallery-card">
+                <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlVetDHyggonDMCX7dE-UxzQh-qp6ZKmgSacY90s0Wr5r_3D8pRJAtfn1tbuBFevLssqP-U7jNAc4xeONotUWshsraHlX2zmMXGlMUdf7J7R7xhHK9xHRZFRinh5MwiT2sbFyhPGEX0-DZu=s680-w680-h510-rw" alt="Rincones Acogedores">
+                <h3>Rincones Acogedores</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lugares de Interés Cercanos -->
+    <section id="lugares" style="background-color: #f2ede4;">
+        <h2 class="section-title">Lugares de Interés Cercanos</h2>
+        <div class="gallery-grid">
+            
+            <!-- Bosque de Pinos -->
+            <div class="gallery-card">
+                <a href="https://www.google.com/maps/dir/Posada+Humo+Negro,+Arado+B,+en+direcci%C3%B3n+al+Valle,+M%C3%A9rida+5101,+M%C3%A9rida/Bosque+de+los+Pinos,+MVHM%2BMWF,+Calle+El+Bosque,+M%C3%A9rida+5101,+M%C3%A9rida/@8.6685151,-71.1172269,15.5z/data=!4m14!4m13!1m5!1m1!1s0x8e6481ce223ab575:0x57c4f536668133dd!2m2!1d-71.1094264!2d8.6596889!1m5!1m1!1s0x8e6486d2e79ae38d:0x1d46a8a1efd68abf!2m2!1d-71.1152121!2d8.679186!3e0?hl=es-419&entry=ttu" target="_blank" class="map-preview-container">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX16Qzam0zvvnzx1Q0EaYR9i6oAwCHnJasRFvZsbRJHuAkQpoUJfDS1MY&s=10" alt="Mapa Bosque de Pinos">
+                    <div class="map-overlay">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <span>Ver Ruta en Mapa</span>
+                    </div>
+                </a>
+                <h3>Bosque de los Pinos</h3>
+                <p style="padding: 0 15px 20px; font-size: 0.9rem; color: #555;">Un hermoso paisaje rodeado de pinos, perfecto para caminatas en contacto directo con la naturaleza.</p>
+            </div>
+
+            <!-- Bosque Sagrado -->
+            <div class="gallery-card">
+                <a href="https://www.google.com/maps/dir/Posada+Humo+Negro,+Arado+B,+en+direcci%C3%B3n+al+Valle,+M%C3%A9rida+5101,+M%C3%A9rida/Bosque+Sagrado,+de+Principal,+El+Valle+5101,+M%C3%A9rida/@8.6509512,-71.1226884,15.5z/data=!4m14!4m13!1m5!1m1!1s0x8e6481ce223ab575:0x57c4f536668133dd!2m2!1d-71.1094264!2d8.6596889!1m5!1m1!1s0x8e64810faa27b6bf:0xc2bd610435ac1fc1!2m2!1d-71.1305097!2d8.653989!3e0?hl=es-419&entry=ttu" target="_blank" class="map-preview-container">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdqlbLz1QZJMTOCOXH0buOcJShGGMajGgvOT8r_YbsqPRAIZ_bdPAiZ9AS&s=10" alt="Mapa Bosque Sagrado">
+                    <div class="map-overlay">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <span>Ver Ruta en Mapa</span>
+                    </div>
+                </a>
+                <h3>Bosque Sagrado</h3>
+                <p style="padding: 0 15px 20px; font-size: 0.9rem; color: #555;">Un espacio mágico de la zona montañosa, ideal para desconectar y respirar aire puro.</p>
+            </div>
+
+            <!-- Casa Ángel del Sol -->
+            <div class="gallery-card">
+                <a href="https://www.google.com/maps/dir/Posada+Humo+Negro,+Arado+B,+en+direcci%C3%B3n+al+Valle,+M%C3%A9rida+5101,+M%C3%A9rida/8.6816294,-71.1198007/@8.6714555,-71.1221182,3848m/data=!3m1!1e3!4m9!4m8!1m5!1m1!1s0x8e6481ce223ab575:0x57c4f536668133dd!2m2!1d-71.1094264!2d8.6596889!1m0!3e0?hl=es-419&entry=ttu&g_ep=EgoyMDI2MDgxide20IKXMDSoASAFQAw%3D%3D" target="_blank" class="map-preview-container">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBSjjjSulQN8JXMn_IxngHh9Bw220rDVFZ2XwcymVxpNuEkK0qPhoBCFo&s=10" alt="Mapa Casa Angel del Sol">
+                    <div class="map-overlay">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <span>Ver Ruta en Mapa</span>
+                    </div>
+                </a>
+                <h3>Casa Ángel del Sol</h3>
+                <p style="padding: 0 15px 20px; font-size: 0.9rem; color: #555;">Un hermoso lugar donde podrás conocer y alimentar a los colibríes.</p>
+            </div>
+
+            <!-- Oasis de Noé -->
+            <div class="gallery-card">
+                <a href="https://www.google.com/maps/place/El+oasis+de+noe/@8.6680355,-71.1172152,2290m/data=!3m1!1e3!4m27!1m20!4m19!1m6!1m2!1s0x8e6481ce223ab575:0x57c4f536668133dd!2sPosada+Humo+Negro,+Arado+B,+en+direcci%C3%B3n+al+Valle,+M%C3%A9rida+5101,+M%C3%A9rida!2m2!1d-71.1094264!2d8.6596889!1m3!2m2!1d-71.1127695!2d8.6746682!1m6!1m2!1s0x8e6481002dcb894d:0xe82767fa0efe1224!2sEl+oasis+de+noe,+MVFP%2BWQC,+El+Valle+5101,+M%C3%A9rida!2m2!1d-71.1129688!2d8.6748573!3e0!3m5!1s0x8e6481002dcb894d:0xe82767fa0efe1224!8m2!3d8.6748573!4d-71.1129688!16s%2Fg%2F11zdd1vnym?hl=es-419&entry=ttu&g_ep=EgoyMDI2MDgxMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="map-preview-container">
+                    <img src="https://i.imgur.com/hj7get6.jpeg" alt="Mapa Oasis de Noe">
+                    <div class="map-overlay">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <span>Ver Ruta en Mapa</span>
+                    </div>
+                </a>
+                <h3>Oasis de Noé</h3>
+                <p style="padding: 0 15px 20px; font-size: 0.9rem; color: #555;">Un lugar en camino al bosque de pinos, donde el aire puro se encuentra con la pasión por las truchas y los colibríes.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Opiniones de Huéspedes -->
+    <section id="opiniones">
+        <h2 class="section-title">Lo que dicen nuestros huéspedes</h2>
+        <div class="reviews-container">
+            
+            <div class="review-card">
+                <div>
+                    <div class="review-header">
+                        <div class="review-avatar">JB</div>
+                        <div class="review-author">
+                            <h4>Jorge Bravo</h4>
+                            <span>1 opinión · Hace 6 meses</span>
+                        </div>
+                    </div>
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="review-text">"Me encantó haberme quedado aquí. Lo que más destaco es la calidez del servicio, da gusto encontrar gente tan amable y dispuesta a ayudar. El ambiente es sereno y está rodeado de naturaleza pura, un paisaje de postal, y las instalaciones son muy acogedoras y confortables. ¡Súper recomendada!"</p>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div>
+                    <div class="review-header">
+                        <div class="review-avatar" style="background-color: var(--secondary-color);">FR</div>
+                        <div class="review-author">
+                            <h4>Francisco Rivas</h4>
+                            <h4>Francisco Rivas</h4>
+                            <span>Local Guide · 20 opiniones · Hace 7 meses</span>
+                        </div>
+                    </div>
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="review-text">"Todo muy bonito y limpio , y el clima de montaña es lo mejor , recomendado."</p>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div>
+                    <div class="review-header">
+                        <div class="review-avatar" style="background-color: #4a7c59;">MM</div>
+                        <div class="review-author">
+                            <h4>Marialys Marin</h4>
+                            <span>1 opinión · Hace 7 meses</span>
+                        </div>
+                    </div>
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="review-text">"Excelente lugar para compartir en familia o para una escapada romántica en pareja. Amplio jardín, cabañas cómodas con agua caliente y buena movilización hacia el centro de Mérida. ¡Espero regresar pronto!"</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Ubicación y Contacto -->
+    <section id="ubicacion" style="background-color: #f2ede4;">
+        <h2 class="section-title">Ubicación y Contacto</h2>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Visítanos en los Andes</h3>
+                <p><i class="fa-solid fa-location-dot"></i> <span><strong>Dirección:</strong> Arado B, en dirección al Valle, Mérida 5101, Mérida</span></p>
+                <p><i class="fa-solid fa-bus"></i> <span><strong>Transporte público:</strong> Los autobuses y carritos por puesto vía El Valle se toman en el centro de Mérida, en los alrededores de la Avenida 2 (Lora) con Calle 19 y te dejan a 2 minutos caminando hasta nuestra posada.</span></p>
+                <p><i class="fa-solid fa-phone"></i> <span><strong>Teléfono:</strong> 0414-9781266</span></p>
+                <p><i class="fa-solid fa-clock"></i> <span><strong>Horario:</strong> Atención personalizada todos los días</span></p>
+                <br>
+                <a href="https://wa.me/584149781266" target="_blank" class="btn-main" style="text-align: center;"><i class="fa-brands fa-whatsapp"></i> Escríbenos al WhatsApp</a>
+            </div>
+            <div class="contact-map">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3975.3!2d-71.1094264!3d8.6596889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e6481ce223ab575%3A0x57c4f536668133dd!2sPosada%20Humo%20Negro!5e0!3m2!1ses!2sve!4v1723773000000!5m2!1ses!2sve" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-icons">
+            <a href="https://wa.me/584149781266" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/penalozaramonadrianrivas" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2026 Posada Humo Negro. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
