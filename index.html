@@ -147,6 +147,126 @@
             font-weight: 700;
         }
 
+        /* Estilos para la sección de Chalets con Carrusel y Detalles */
+        .chalets-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            align-items: center;
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .carousel-images {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .carousel-images img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .prev-btn { left: 15px; }
+        .next-btn { right: 15px; }
+
+        .chalet-info h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .chalet-info p {
+            margin-bottom: 15px;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .chalet-features {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .chalet-features li {
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-dark);
+        }
+
+        .chalet-features i {
+            color: var(--secondary-color);
+        }
+
+        /* Modal para ampliar imagen */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
         /* Galería / Paraíso / Lugares */
         .gallery-grid {
             display: grid;
@@ -365,7 +485,7 @@
             .hero-content h1 {
                 font-size: 2.2rem;
             }
-            .contact-grid {
+            .contact-grid, .chalets-container {
                 grid-template-columns: 1fr;
             }
         }
@@ -381,6 +501,7 @@
             </div>
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#chalets">Chalets</a></li>
                 <li><a href="#galeria">Cabañas</a></li>
                 <li><a href="#lugares">Lugares</a></li>
                 <li><a href="#ubicacion">Ubicación</a></li>
@@ -395,10 +516,56 @@
         <div class="hero-content">
             <h1>Escápate a la serenidad de Mérida</h1>
             <h2>Posada Humo Negro</h2>
-            <p>Cabañas rodeadas de pura naturaleza y clima de montaña</p>
+            <p>Cabañas acogedoras rodeadas de pura naturaleza y clima de montaña</p>
             <a href="https://wa.me/584149781266" target="_blank" class="btn-main"><i class="fa-brands fa-whatsapp"></i> Contáctanos</a>
         </div>
     </section>
+
+    <!-- Sección de Chalets Tipo Estudio -->
+    <section id="chalets">
+        <h2 class="section-title">Nuestros Chalets</h2>
+        <div class="chalets-container">
+            <!-- Carrusel de Imágenes -->
+            <div class="carousel">
+                <button class="carousel-btn prev-btn" onclick="moveSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="carousel-images" id="carouselImages">
+                    <img src="https://i.imgur.com/VcA31l6.jpeg" alt="Chalet 1" onclick="openModal(this)">
+                    <img src="https://i.imgur.com/c8Z3asX.jpeg" alt="Chalet 2" onclick="openModal(this)">
+                    <img src="https://i.imgur.com/CgRBsTy.jpeg" alt="Chalet 3" onclick="openModal(this)">
+                    <img src="https://i.imgur.com/aELLO9X.jpeg" alt="Chalet 4" onclick="openModal(this)">
+                    <img src="https://i.imgur.com/VKwmNmb.jpeg" alt="Chalet 5" onclick="openModal(this)">
+                    <img src="https://i.imgur.com/rlFMo95.jpeg" alt="Chalet 6" onclick="openModal(this)">
+                </div>
+                <button class="carousel-btn next-btn" onclick="moveSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+
+            <!-- Información de los Chalets -->
+            <div class="chalet-info">
+                <h3>Comodidad y Confort en la Montaña</h3>
+                <p>Disponemos de <strong>dos chalets tipo estudio</strong> con capacidad para <strong>5 personas cada uno</strong>. Cada chalet cuenta con un solo ambiente totalmente amoblado para garantizar una estancia perfecta.</p>
+                
+                <ul class="chalet-features">
+                    <li><i class="fa-solid fa-users"></i> Capacidad: 5 Personas</li>
+                    <li><i class="fa-solid fa-bed"></i> Un solo ambiente amoblado</li>
+                    <li><i class="fa-solid fa-bath"></i> Baño privado</li>
+                    <li><i class="fa-solid fa-kitchen-set"></i> Cocina equipada</li>
+                    <li><i class="fa-solid fa-utensils"></i> Utensilios de cocina</li>
+                    <li><i class="fa-solid fa-wifi"></i> Conexión WiFi</li>
+                    <li><i class="fa-solid fa-fire-burner"></i> Parrillera disponible</li>
+                    <li><i class="fa-solid fa-child"></i> Parque Infantil</li>
+                    <li><i class="fa-solid fa-fire"></i> Zona de Fogata</li>
+                    <li><i class="fa-solid fa-circle-plus"></i> ¡Y mucho más!</li>
+                </ul>
+                <a href="https://wa.me/584149781266" target="_blank" class="btn-main"><i class="fa-brands fa-whatsapp"></i> Reservar Chalet</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal para Ampliar Imagen -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
 
     <!-- Galería / Descubre Nuestro Paraíso -->
     <section id="galeria">
@@ -419,6 +586,14 @@
             <div class="gallery-card">
                 <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlVetDHyggonDMCX7dE-UxzQh-qp6ZKmgSacY90s0Wr5r_3D8pRJAtfn1tbuBFevLssqP-U7jNAc4xeONotUWshsraHlX2zmMXGlMUdf7J7R7xhHK9xHRZFRinh5MwiT2sbFyhPGEX0-DZu=s680-w680-h510-rw" alt="Rincones Acogedores">
                 <h3>Rincones Acogedores</h3>
+            </div>
+            <div class="gallery-card">
+                <img src="https://i.imgur.com/CgRBsTy.jpeg" alt="Espacios para los más pequeños">
+                <h3>Espacios para los más pequeños</h3>
+            </div>
+            <div class="gallery-card">
+                <img src="https://i.imgur.com/aELLO9X.jpeg" alt="Chalets Confortables y privados">
+                <h3>Chalets Confortables y privados</h3>
             </div>
         </div>
     </section>
@@ -477,7 +652,7 @@
                     </div>
                 </a>
                 <h3>Oasis de Noé</h3>
-                <p style="padding: 0 15px 20px; font-size: 0.9rem; color: #555;">Este lugar esta en camino al bosque de pinos, donde el aire puro se encuentra con la pasión por las truchas y los colibríes, excelente atencion y un vino increible.</p>
+                <p style="padding: 0 15px 20px; font-size: 0.9rem; color: #555;">Un lugar en camino al bosque de pinos, donde el aire puro se encuentra con la pasión por las truchas y los colibríes.</p>
             </div>
 
             <!-- Zoologico -->
@@ -535,7 +710,6 @@
                     <div class="review-header">
                         <div class="review-avatar" style="background-color: var(--secondary-color);">FR</div>
                         <div class="review-author">
-                            <h4>Francisco Rivas</h4>
                             <h4>Francisco Rivas</h4>
                             <span>Local Guide · 20 opiniones · Hace 7 meses</span>
                         </div>
@@ -601,6 +775,35 @@
         </div>
         <p>&copy; 2026 Posada Humo Negro. Todos los derechos reservados.</p>
     </footer>
+
+    <!-- Script para el Carrusel y la Ampliación de Imágenes -->
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll(".carousel-images img");
+        const totalSlides = slides.length;
+
+        function moveSlide(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const carouselImages = document.getElementById("carouselImages");
+            carouselImages.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        function openModal(img) {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("modalImg");
+            modal.style.display = "flex";
+            modalImg.src = img.src;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("imageModal");
+            modal.style.display = "none";
+        }
+    </script>
 
 </body>
 </html>
